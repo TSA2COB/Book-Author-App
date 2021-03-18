@@ -1,0 +1,32 @@
+<div>
+    <h3>View Book Details</h3>
+    <div>
+        <div>
+            <label><b>ID: </b></label> {{book.id}}
+        </div>
+        <div>
+            <label><b>Title of the Book: </b></label> {{book.title}}
+        </div>
+        <div>
+            <label><b>Description: </b></label> {{book.description}}
+        </div>
+        <div>
+            <label><b>Publication Date: </b></label> {{book.publicationDate}}
+        </div>
+        <div>
+            <label><b>Price: </b></label> {{book.price}}
+        </div>
+
+        <div>
+            <span>
+                <button (click) = "cancelViewBook()" class="btn btn-secondary" type="button" style="margin-left: 10px">Back</button>
+            </span>
+            <span>
+                <button (click) = "editBook(book.id)" class="btn btn-warning" type="button" style="margin-left: 10px">Edit</button>
+            </span>
+            <span>
+                <button (click) = "deleteBook(book.id)" class="btn btn-danger" type="button" style="margin-left: 10px">Delete</button>
+            </span>
+        </div>
+    </div>
+</div>

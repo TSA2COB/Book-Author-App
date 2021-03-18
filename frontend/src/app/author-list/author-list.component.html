@@ -1,0 +1,30 @@
+<h2>
+    <span>Author List</span>
+    <button (click) = "createAuthor()" class="btn btn-success btn-sm float-right">
+        <span>Create a new Author</span>
+    </button>
+</h2>
+
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Birth Date</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor = "let author of authors">
+            <td>{{author.id}}</td>
+            <td>{{author.name}}</td>
+            <td>{{author.birthDate}}</td>
+            <td>
+                <button (click) = "viewAuthor(author.id)" class="btn btn-info" style="margin-left: 10px">View</button>
+                <button (click) = "updateAuthor(author.id)" class="btn btn-warning" style="margin-left: 10px">Edit</button>
+                <button (click) = "deleteAuthor(author.id)" class="btn btn-danger" style="margin-left: 10px">Delete</button>
+            </td>
+        </tr>
+    </tbody>
+</table>

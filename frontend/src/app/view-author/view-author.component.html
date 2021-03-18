@@ -1,0 +1,26 @@
+<div>
+    <h3>View Author Details</h3>
+    <div>
+        <div>
+            <label><b>ID: </b></label> {{author.id}}
+        </div>
+        <div>
+            <label><b>Name: </b></label> {{author.name}}
+        </div>
+        <div>
+            <label><b>Date of Birth: </b></label> {{author.birthDate}}
+        </div>
+
+        <div>
+            <span>
+                <button (click) = "cancelViewAuthor()" class="btn btn-secondary" type="button" style="margin-left: 10px">Back</button>
+            </span>
+            <span>
+                <button (click) = "editAuthor(author.id)" class="btn btn-warning" type="button" style="margin-left: 10px">Edit</button>
+            </span>
+            <span>
+                <button (click) = "deleteAuthor(author.id)" class="btn btn-danger" type="button" style="margin-left: 10px">Delete</button>
+            </span>
+        </div>
+    </div>
+</div>

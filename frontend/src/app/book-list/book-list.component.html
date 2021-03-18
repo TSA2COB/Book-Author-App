@@ -1,0 +1,30 @@
+<h2>
+    <span>Book List</span>
+    <button (click) = "createBook()" class="btn btn-success btn-sm float-right">
+        <span>Create a new Book</span>
+    </button>
+</h2>
+
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Book Title</th>
+            <th>Publication Date</th>
+            <th>Price</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor = "let book of books">
+            <td>{{book.title}}</td>
+            <td>{{book.publicationDate}}</td>
+            <td>{{book.price}}</td>
+            <td>
+                <button (click) = "viewBook(book.id)" class="btn btn-info" style="margin-left: 10px">View</button>
+                <button (click) = "updateBook(book.id)" class="btn btn-warning" style="margin-left: 10px">Edit</button>
+                <button (click) = "deleteBook(book.id)" class="btn btn-danger" style="margin-left: 10px">Delete</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
