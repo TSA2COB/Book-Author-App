@@ -2,8 +2,12 @@ package com.bosch.backend;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+
+import com.bosch.backend.repo.UserRepo;
 
 @SpringBootApplication
+@EnableJpaRepositories(basePackageClasses = UserRepo.class)
 public class BackendApplication {
 
 	public static void main(String[] args) {
