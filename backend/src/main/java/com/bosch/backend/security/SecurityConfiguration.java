@@ -9,9 +9,12 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import com.bosch.backend.filters.JwtRequestFilter;
 import com.bosch.backend.serviceImpl.MyUserDetailsServiceImpl;
 
 @Configuration
@@ -19,7 +22,10 @@ import com.bosch.backend.serviceImpl.MyUserDetailsServiceImpl;
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	
 	@Autowired
-	MyUserDetailsServiceImpl myUserDetailsServiceImpl;
+	private MyUserDetailsServiceImpl myUserDetailsServiceImpl;
+	
+	@Autowired
+	private JwtRequestFilter jwtRequestFilter;
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -44,7 +50,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 			.antMatchers("/books/**").hasAnyRole("USER", "ADMIN")
 			.antMatchers("/authenticate").permitAll()
 			.antMatchers("/").permitAll()
-			.and().formLogin();
+			.and().formLogin()
+			.and().sessionManagement()
+			.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+		
+		// Filter Chains
+		http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
 	}
 	
 	@Override
