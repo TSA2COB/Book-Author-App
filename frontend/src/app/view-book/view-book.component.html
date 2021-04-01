@@ -8,6 +8,10 @@
             <label><b>Title of the Book: </b></label> {{book.title}}
         </div>
         <div>
+            <span><label><b>Author Name: </b></label> </span>
+            <span><a href="authors/{{book.author.id}}/view">{{book.author.name}}</a></span>
+        </div>
+        <div>
             <label><b>Description: </b></label> {{book.description}}
         </div>
         <div>
