@@ -1,5 +1,10 @@
+import { Author } from './author';
+
 export class Book {
-    id: string;
+	id: string;
+	
+	author: Author;
+
 	title: string;
 	description: string;
 	publicationDate: string;
