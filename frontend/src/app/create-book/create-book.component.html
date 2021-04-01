@@ -22,6 +22,33 @@
             <input type="number" class="form-control" id="price" [(ngModel)] = "book.price" name="price">
         </div>
 
+        <div class="form-group">
+            <label>Author Name</label>
+            <div>
+                <ng-autocomplete
+                [data]="author_list"
+                [searchKeyword]="keyword"
+                [itemTemplate]="itemTemplate"
+                [notFoundTemplate]="notFoundTemplate"
+                [(ngModel)] = "book.author" name="author"
+                (selected)='selectEvent($event)'
+                (inputChanged)='onChangeSearch($event)'
+                (inputFocused)='onFocused($event)'>
+                
+                    
+                </ng-autocomplete>
+
+                <ng-template #itemTemplate let-item>
+                    <a [innerHTML]="item?.name"></a>
+                </ng-template>
+                    
+                <ng-template #notFoundTemplate let-notFound>
+                    <div [innerHTML]="notFound"></div>
+                </ng-template>
+
+            </div>
+        </div>
+
         <div>
             <span>
                 <button (click) = "cancelCreateBook()" class="btn btn-secondary" type="button">Cancel</button>

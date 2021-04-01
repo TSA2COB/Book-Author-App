@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Author } from '../author';
+import { AuthorService } from '../author.service';
 import { Book } from '../book';
 import { BookService } from '../book.service';
 
@@ -11,11 +13,41 @@ import { BookService } from '../book.service';
 export class CreateBookComponent implements OnInit {
 
   book: Book = new Book();
+  author_list: Author[];
+  keyword = 'name';
+  searchKeyword = "";
 
   constructor(private bookService: BookService,
+    private authorService: AuthorService,
     private router: Router) { }
 
   ngOnInit(): void {
+    this.getAuthors();
+  }
+
+  selectEvent(item) {
+    // do something with selected item
+    console.log(item);
+
+  }
+
+  onChangeSearch(val: string) {
+    // fetch remote data from here
+    // And reassign the 'data' which is binded to 'data' property.
+    this.searchKeyword = val;
+    
+  }
+  
+  onFocused(e){
+    // do something when input is focused
+    
+  }
+
+  private getAuthors() {
+    this.authorService.getAuthorList().subscribe(data => {
+      this.author_list = data;
+      console.log(this.author_list);
+    });
   }
 
   private saveBook() {
